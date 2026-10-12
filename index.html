@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kannan K — first-year Computer Science Engineering student at CIT Chennai, learning C++ and exploring Cyber Security." />
+  <title>Kannan K | Student Developer</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: #0e1525;
+      --panel-light: #111c30;
+      --text: #f3f6ff;
+      --muted: #a4afc5;
+      --blue: #4f8cff;
+      --cyan: #59d5ff;
+      --border: rgba(148, 169, 207, .17);
+      --max-width: 1100px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body {
+      background: radial-gradient(ellipse at 75% 0%, rgba(37, 91, 190, .16), transparent 38%), var(--bg);
+      color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(var(--max-width), calc(100% - 40px)); margin: 0 auto; }
+    .nav-wrap { position: sticky; top: 0; z-index: 10; background: rgba(7, 11, 20, .82); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { font-weight: 800; letter-spacing: -.04em; font-size: 1.2rem; }
+    .logo span { color: var(--cyan); }
+    .nav-links { display: flex; gap: 26px; list-style: none; color: var(--muted); font-size: .92rem; }
+    .nav-links a:hover, .text-link:hover { color: var(--cyan); }
+    .menu-toggle { display: none; border: 1px solid var(--border); background: var(--panel); color: var(--text); border-radius: 9px; padding: 8px 11px; font-size: 1rem; }
+    .hero { min-height: 620px; display: grid; grid-template-columns: 1.35fr .65fr; align-items: center; gap: 55px; padding-top: 70px; padding-bottom: 90px; }
+    .eyebrow { color: var(--cyan); font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; }
+    h1 { font-size: clamp(3rem, 7vw, 5.7rem); letter-spacing: -.065em; line-height: 1.03; margin: 18px 0 22px; }
+    h1 .accent { color: var(--blue); }
+    .hero-copy { color: var(--muted); font-size: 1.08rem; max-width: 600px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 9px; padding: 12px 18px; border-radius: 11px; font-weight: 700; font-size: .94rem; border: 1px solid var(--border); transition: transform .2s, border-color .2s, background .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(110deg, var(--blue), #3468e7); border-color: transparent; color: white; box-shadow: 0 10px 35px rgba(54, 105, 231, .22); }
+    .btn-secondary { background: rgba(255,255,255,.025); color: var(--text); }
+    .hero-card { position: relative; border: 1px solid rgba(89, 213, 255, .25); border-radius: 24px; padding: 28px; background: linear-gradient(145deg, rgba(18, 34, 62, .95), rgba(10, 15, 27, .94)); box-shadow: 0 25px 80px rgba(0,0,0,.25); overflow: hidden; }
+    .hero-card:before { content: ""; position: absolute; width: 190px; height: 190px; border-radius: 50%; background: rgba(79,140,255,.16); filter: blur(40px); right: -70px; top: -80px; }
+    .avatar { position: relative; display: grid; place-items: center; width: 90px; height: 90px; border-radius: 24px; background: linear-gradient(135deg, #4f8cff, #56d5f6); color: #07101e; font-size: 2rem; font-weight: 900; margin-bottom: 24px; box-shadow: 0 10px 35px rgba(79,140,255,.2); }
+    .hero-card h2 { font-size: 1.35rem; margin-bottom: 5px; }
+    .hero-card p { color: var(--muted); font-size: .94rem; }
+    .status { display: inline-flex; align-items: center; gap: 8px; margin-top: 23px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 999px; color: #c9d6ed; font-size: .8rem; }
+    .status-dot { width: 7px; height: 7px; background: #58dfa4; border-radius: 50%; box-shadow: 0 0 12px rgba(88,223,164,.6); }
+    section { padding: 78px 0; }
+    .section-head { margin-bottom: 30px; }
+    .section-head .eyebrow { margin-bottom: 7px; }
+    h2.section-title { font-size: clamp(1.9rem, 4vw, 2.65rem); letter-spacing: -.045em; line-height: 1.2; }
+    .section-intro { color: var(--muted); max-width: 650px; margin-top: 12px; }
+    .about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px; }
+    .panel { background: linear-gradient(145deg, rgba(17,28,48,.9), rgba(11,17,30,.92)); border: 1px solid var(--border); border-radius: 18px; padding: 26px; }
+    .panel p { color: var(--muted); }
+    .panel p + p { margin-top: 13px; }
+    .facts { display: grid; gap: 15px; }
+    .fact { display: flex; gap: 13px; align-items: flex-start; }
+    .fact-icon { width: 38px; height: 38px; display: grid; place-items: center; flex-shrink: 0; border-radius: 11px; color: var(--cyan); background: rgba(79,140,255,.12); font-weight: 800; }
+    .fact strong { display: block; font-size: .95rem; }
+    .fact span { color: var(--muted); font-size: .88rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skill-card { padding: 23px; border-radius: 16px; border: 1px solid var(--border); background: rgba(14,21,37,.8); }
+    .skill-symbol { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: rgba(79,140,255,.12); color: var(--cyan); font-weight: 800; margin-bottom: 16px; }
+    .skill-card h3 { font-size: 1.05rem; margin-bottom: 7px; }
+    .skill-card p { color: var(--muted); font-size: .9rem; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+    .tag { padding: 5px 9px; border: 1px solid var(--border); border-radius: 8px; color: #c6d3e9; font-size: .78rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .project-card { border: 1px solid var(--border); border-radius: 18px; padding: 25px; background: linear-gradient(145deg, rgba(17,28,48,.85), rgba(10,15,27,.9)); display: flex; flex-direction: column; min-height: 230px; }
+    .project-top { display: flex; justify-content: space-between; gap: 15px; align-items: center; margin-bottom: 17px; }
+    .project-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: rgba(79,140,255,.13); color: var(--cyan); font-size: 1.15rem; font-weight: 800; }
+    .project-label { color: var(--cyan); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .project-card h3 { font-size: 1.13rem; margin-bottom: 8px; }
+    .project-card p { color: var(--muted); font-size: .92rem; }
+    .project-card .tag-list { margin-top: auto; padding-top: 18px; }
+    .note { color: var(--muted); font-size: .88rem; margin-top: 18px; }
+    .contact-panel { display: flex; justify-content: space-between; align-items: center; gap: 30px; padding: 34px; border: 1px solid rgba(79,140,255,.3); border-radius: 22px; background: radial-gradient(ellipse at 100% 0%, rgba(79,140,255,.14), transparent 45%), var(--panel); }
+    .contact-panel p { color: var(--muted); max-width: 580px; margin-top: 9px; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 10px; flex-shrink: 0; }
+    footer { border-top: 1px solid var(--border); padding: 25px 0; color: var(--muted); font-size: .85rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .text-link { color: var(--cyan); text-decoration: underline; text-underline-offset: 4px; }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; gap: 36px; min-height: auto; padding-top: 75px; }
+      .hero-card { max-width: 480px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-panel { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(var(--max-width), calc(100% - 28px)); }
+      nav { min-height: 64px; }
+      .menu-toggle { display: inline-block; }
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; padding: 18px 22px 22px; background: #0a101d; border-bottom: 1px solid var(--border); flex-direction: column; gap: 15px; }
+      .nav-links.open { display: flex; }
+      .hero { padding-top: 60px; padding-bottom: 55px; }
+      h1 { font-size: clamp(2.75rem, 14vw, 4rem); }
+      section { padding: 58px 0; }
+      .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+      .panel, .skill-card, .project-card { padding: 21px; }
+      .contact-panel { padding: 24px; }
+      .hero-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav class="container" aria-label="Main navigation">
+      <a class="logo" href="#home">Kannan<span>.</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main>
+    <header class="container hero" id="home">
+      <div>
+        <p class="eyebrow">First-year CSE student · CIT Chennai</p>
+        <h1>Hi, I'm<br /><span class="accent">Kannan K.</span></h1>
+        <p class="hero-copy">I'm learning C++ and building my foundation in computer science. I'm also exploring Cyber Security and working towards becoming a skilled software engineer.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">Explore my work <span aria-hidden="true">↘</span></a>
+          <a class="btn btn-secondary" href="#contact">Connect with me</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Profile summary">
+        <div class="avatar" aria-hidden="true">KK</div>
+        <h2>Kannan K.</h2>
+        <p>Computer Science Engineering</p>
+        <p>Chennai Institute of Technology</p>
+        <div class="status"><span class="status-dot"></span> Learning · Building · Improving</div>
+      </aside>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">A little about me</p><h2 class="section-title">Curious mind. Consistent progress.</h2><p class="section-intro">I'm at the beginning of my engineering journey, learning core programming concepts and looking for opportunities to grow through practical work.</p></div>
+        <div class="about-grid">
+          <div class="panel">
+            <p>I'm Kannan K, a first-year Computer Science Engineering student at Chennai Institute of Technology (CIT Chennai).</p>
+            <p>Right now, I'm learning C++ and improving my problem-solving skills. I'm interested in Cyber Security and want to understand how software and computer systems work, how to build them well, and how to protect them.</p>
+            <p>My goal is to keep learning, build useful projects, and become ready for internships and future placement opportunities.</p>
+          </div>
+          <div class="panel facts">
+            <div class="fact"><div class="fact-icon">01</div><div><strong>Education</strong><span>B.E. Computer Science Engineering · CIT Chennai</span></div></div>
+            <div class="fact"><div class="fact-icon">02</div><div><strong>Currently learning</strong><span>C++ and programming fundamentals</span></div></div>
+            <div class="fact"><div class="fact-icon">03</div><div><strong>Areas of interest</strong><span>Cyber Security · Software Development</span></div></div>
+            <div class="fact"><div class="fact-icon">04</div><div><strong>Current goal</strong><span>Build projects and prepare for internships</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">What I'm working on</p><h2 class="section-title">Skills & learning</h2><p class="section-intro">These cards describe my current learning areas—not expert-level claims. I'll update them as I gain experience.</p></div>
+        <div class="skills-grid">
+          <article class="skill-card"><div class="skill-symbol">C++</div><h3>C++ Programming</h3><p>Learning syntax, conditions, loops, functions, vectors, and problem-solving.</p><div class="tag-list"><span class="tag">C++ basics</span><span class="tag">STL practice</span></div></article>
+          <article class="skill-card"><div class="skill-symbol">DS</div><h3>Problem Solving</h3><p>Practising beginner coding challenges to strengthen logic and algorithmic thinking.</p><div class="tag-list"><span class="tag">Logic building</span><span class="tag">Practice</span></div></article>
+          <article class="skill-card"><div class="skill-symbol">SEC</div><h3>Cyber Security</h3><p>An area I'm interested in exploring through networking, Linux, and safe security labs.</p><div class="tag-list"><span class="tag">Learning interest</span><span class="tag">Beginner</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">Learning by doing</p><h2 class="section-title">Projects & practice</h2><p class="section-intro">Use this section to showcase work you have actually built. Replace the sample cards with your completed projects and add a GitHub link when available.</p></div>
+        <div class="projects-grid">
+          <article class="project-card"><div class="project-top"><div class="project-icon">⌘</div><span class="project-label">Practice</span></div><h3>C++ Coding Practice</h3><p>Solving programming problems to practise arrays, strings, loops, vectors, and basic algorithms.</p><div class="tag-list"><span class="tag">C++</span><span class="tag">Problem solving</span><span class="tag">In progress</span></div></article>
+          <article class="project-card"><div class="project-top"><div class="project-icon">⌁</div><span class="project-label">Planned</span></div><h3>Beginner Cyber Security Lab</h3><p>A future learning project to practise networking and Linux basics in a legal, controlled environment. Add details after you build it.</p><div class="tag-list"><span class="tag">Linux</span><span class="tag">Networking</span><span class="tag">Planned</span></div></article>
+        </div>
+        <p class="note">Tip: When a project is complete, add what problem it solves, what you built, the tools you used, and a link to its source code. Don't list planned work as completed.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div><p class="eyebrow">Let's connect</p><h2 class="section-title">Open to learning opportunities.</h2><p>I'm building my skills and looking forward to connecting with students, developers, and mentors. Add your real profile links below before publishing.</p></div>
+          <div class="contact-links">
+            <!-- Replace the # values with your actual profile URLs. -->
+            <a class="btn btn-primary" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <!-- Replace this email address with your professional email. -->
+            <a class="btn btn-secondary" href="mailto:your.email@example.com">Email ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><span>© <span id="year"></span> Kannan K.</span><span>Built with HTML, CSS & JavaScript.</span></div></footer>
+  <script>
+    // Keep the copyright year current.
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Open and close the mobile navigation menu.
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    // Close the mobile menu after a navigation link is selected.
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      });
+    });
+  </script>
+</body>
+</html>
